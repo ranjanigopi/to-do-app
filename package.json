@@ -1,19 +1,22 @@
 {
-  "name": "to-do-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ranjanigopi/to-do-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ranjanigopi/to-do-app/issues"
-  },
-  "homepage": "https://github.com/ranjanigopi/to-do-app#readme"
+    "name": "to-do-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "server": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ranjanigopi/to-do-app.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ranjanigopi/to-do-app/issues"
+    },
+    "homepage": "https://github.com/ranjanigopi/to-do-app#readme",
+    "dependencies": {
+        "nodemon": "^2.0.4"
+    }
 }
