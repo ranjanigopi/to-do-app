@@ -1,22 +1,25 @@
 const http = require('http');
-const todo = {
-    "Upcoming-task": "Do this",
-    "Ongoing-task": "Do that",
-    "copleted-task": "This and that"
-};
 
 const getJsonString = (obj) => JSON.stringify(obj, null, '  ');
 
-const server = http.createServer(handler);
+const server = http.createServer();
+
+server.on('request', (request, response) => {
+    const data = [];
+
+    request.on('data', (chunk) => {
+        data.push(chunk);
+    });
+    request.on('end', () => {
+        const bodyString = Buffer.concat(data).toString();
+        request.body = bodyString.length ? JSON.parse(bodyString) : {};
+
+        handler(request, response);
+    });
+})
 
 function handler(request, response) {
-    if (request.url === '/todo') {
-        response.writeHead(200, { "Content-Type": "application/json" });
-        response.write(getJsonString(todo));
-    } else {
-        response.writeHead(404);
-        response.write('Not Found');
-    }
     response.end();
 }
+
 server.listen(8080);
