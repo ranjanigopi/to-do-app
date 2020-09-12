@@ -1,6 +1,6 @@
+const { fstat } = require('fs');
 const http = require('http');
-
-const getJsonString = (obj) => JSON.stringify(obj, null, '  ');
+const file = require('./file');
 
 const server = http.createServer();
 
@@ -19,6 +19,14 @@ server.on('request', (request, response) => {
 })
 
 function handler(request, response) {
+    if (request.url === '/') {
+        request.url = '/index.html';
+    }
+    if (!file.fileHandler(request, response)) {
+        response.writeHead(404);
+        response.write('Not Found');
+    }
+
     response.end();
 }
 
