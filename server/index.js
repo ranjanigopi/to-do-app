@@ -1,6 +1,6 @@
-const { fstat } = require('fs');
 const http = require('http');
 const file = require('./file');
+const router = require('./router');
 
 const server = http.createServer();
 
@@ -22,7 +22,7 @@ function handler(request, response) {
     if (request.url === '/') {
         request.url = '/index.html';
     }
-    if (!file.fileHandler(request, response)) {
+    if (!file.fileHandler(request, response) && !router.routeHandler(request, response)) {
         response.writeHead(404);
         response.write('Not Found');
     }
